@@ -46,7 +46,14 @@ app.get('/products/:productid/styles', (req, res) => {
 });
 
 app.get('/products/:productid/related', (req, res) => {
-  res.send('related products');
+  let id = req.params.productid;
+  db.getRelatedProducts((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  }, id);
 });
 
 app.get('/cart', (req, res) => {
