@@ -4,24 +4,19 @@ CREATE TABLE products (
   slogan VARCHAR(1000) NOT NULL,
   description VARCHAR(1000) NOT NULL,
   category VARCHAR(255) NOT NULL,
-  default_price INT NOT NULL
+  default_price VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP now(),
+  updated_at TIMESTAMP now()
 );
 
 CREATE TABLE styles (
-  id SERIAL Primary Key,
+  style_id SERIAL Primary Key,
   productId INT,
   name VARCHAR(255) NOT NULL,
-  sale_price INT,
-  original_price INT NOT NULL,
-  default_style INT NOT NULL,
+  sale_price VARCHAR(255),
+  original_price VARCHAR(255) NOT NULL,
+  "default?" BOOLEAN NOT NULL,
   FOREIGN KEY(productId) REFERENCES products(id)
-);
-
-CREATE TABLE characteristics (
-  id SERIAL Primary Key,
-  product_id INT,
-  name VARCHAR(255) NOT NULL,
-  FOREIGN KEY(product_id) REFERENCES products(id)
 );
 
 CREATE TABLE related (
@@ -43,16 +38,8 @@ CREATE TABLE photos (
   id SERIAL Primary Key,
   styleId INT,
   url VARCHAR(1000) NOT NULL,
-  tumbnail_url VARCHAR(1000) NOT NULL,
+  thumbnail_url VARCHAR(1000) NOT NULL,
   FOREIGN KEY(styleId) REFERENCES styles(id)
-);
-
-CREATE TABLE cart (
-  id SERIAL Primary Key,
-  user_session INT NOT NULL,
-  product_id INT,
-  active INT NOT NULL,
-  FOREIGN KEY(product_id) REFERENCES products(id)
 );
 
 CREATE TABLE skus (
@@ -62,3 +49,17 @@ CREATE TABLE skus (
   quantity INT NOT NULL,
   FOREIGN KEY(styleId) REFERENCES styles(id)
 );
+
+CREATE INDEX idx_styles_productId ON styles(productId);
+
+CREATE INDEX idx_related_current_id ON related(current_product_id);
+
+CREATE INDEX idx_related_related_id ON related(current_related_id);
+
+CREATE INDEX idx_features_product_id ON features(product_id);
+
+CREATE INDEX idx_photos_styleId ON photos(styleId);
+
+CREATE INDEX idx_skus_styleId ON skus(styleId);
+
+-- \copy table_name from file_path with (format csv, header, NULL "null")
