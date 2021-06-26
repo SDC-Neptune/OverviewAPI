@@ -106,20 +106,10 @@ const getRelatedProducts = (callback, id) => {
   });
 };
 
-const getCart = () => {
-
-};
-
-const addToCart = () => {
-
-};
-
 module.exports = {
   getProducts,
   getProductById,
   getProductStyles,
-  getRelatedProducts,
-  getCart,
-  addToCart
+  getRelatedProducts
 };
 

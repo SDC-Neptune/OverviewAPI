@@ -56,15 +56,6 @@ app.get('/products/:productid/related', (req, res) => {
   }, id);
 });
 
-app.get('/cart', (req, res) => {
-  res.send('cart');
-});
-
-app.post('/cart', (req, res) => {
-  res.send('cart post');
-});
-
-
 app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);
 });
