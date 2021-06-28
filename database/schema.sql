@@ -39,7 +39,7 @@ CREATE TABLE photos (
   styleId INT,
   url VARCHAR(1000) NOT NULL,
   thumbnail_url VARCHAR(1000) NOT NULL,
-  FOREIGN KEY(styleId) REFERENCES styles(id)
+  FOREIGN KEY(styleId) REFERENCES styles(style_id)
 );
 
 CREATE TABLE skus (
@@ -47,7 +47,7 @@ CREATE TABLE skus (
   styleId INT,
   size VARCHAR(10) NOT NULL,
   quantity INT NOT NULL,
-  FOREIGN KEY(styleId) REFERENCES styles(id)
+  FOREIGN KEY(styleId) REFERENCES styles(style_id)
 );
 
 CREATE INDEX idx_styles_productId ON styles(productId);
