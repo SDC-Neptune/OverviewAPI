@@ -52,7 +52,7 @@ CREATE INDEX idx_styles_productId ON styles(productId);
 
 CREATE INDEX idx_related_current_id ON related(current_product_id);
 
-CREATE INDEX idx_related_related_id ON related(current_related_id);
+CREATE INDEX idx_related_related_id ON related(related_product_id);
 
 CREATE INDEX idx_features_product_id ON features(product_id);
 
