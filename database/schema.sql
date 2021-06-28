@@ -5,8 +5,8 @@ CREATE TABLE products (
   description VARCHAR(1000) NOT NULL,
   category VARCHAR(255) NOT NULL,
   default_price VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP now(),
-  updated_at TIMESTAMP now()
+  created_at TIMESTAMP DEFAULT Now(),
+  updated_at TIMESTAMP DEFAULT Now()
 );
 
 CREATE TABLE styles (
@@ -61,5 +61,7 @@ CREATE INDEX idx_features_product_id ON features(product_id);
 CREATE INDEX idx_photos_styleId ON photos(styleId);
 
 CREATE INDEX idx_skus_styleId ON skus(styleId);
+
+-- psql sdc -f /some/path/my_script_name.sql
 
 -- \copy table_name from file_path with (format csv, header, NULL "null")
