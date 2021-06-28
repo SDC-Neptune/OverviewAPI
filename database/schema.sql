@@ -4,9 +4,7 @@ CREATE TABLE products (
   slogan VARCHAR(1000) NOT NULL,
   description VARCHAR(1000) NOT NULL,
   category VARCHAR(255) NOT NULL,
-  default_price VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT Now(),
-  updated_at TIMESTAMP DEFAULT Now()
+  default_price VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE styles (
